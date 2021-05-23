@@ -6,17 +6,28 @@ Case No8 Игра
 
 import random
 def rule_game():
+    '''
+    :return: This function returns the text describing the game.
+    '''
     print('Добро пожаловать в игру "Аэропорт"! Вы - настоящий владелец аэропорта. Ваша главная задача - увеличить прибыль.' ,
           'Составляющие игры:', 'Бюджет - ваши деньги', 'Топливо - необходимо закупать его, чтобы заправлять самолеты',
     'Рейсы - количество полетов в день', 'Пассажиры - количество людей в день',
           'Незабывайте, что все в этой игре взаимосвязанно! Удачи!',sep= '\n')
 
 def character(consist):
+    '''
+    :param consist: Components of the game.
+    :return: This function returns a list of the characteristics of the game.
+    '''
     for i in consist:
         x = consist[i]
         print(i, ':' ,x)
 
 def situation(consist):
+    '''
+    :param consist: Components of the game.
+    :return: This function returns a list of basic situations or calls the function dop_sit.
+    '''
     x = random.random()
     if x <= 0.7:
         print('Вам предстоит сделать выбор:', '1. Закупить топливо', '2. Открыть новый рейс', '3. Открыть набор на рейс',
@@ -27,6 +38,11 @@ def situation(consist):
         dop_sit(consist)
 
 def basic_sit(num, consist):
+    '''
+    :param num: Basic situation number.
+    :param consist: Components of the game.
+    :return: This function returns how the parameter values will change depending on the selected basic situation.
+    '''
     if num == 1:
         budget(100000,0, consist)
         fuel(0, 1000, consist)
@@ -41,6 +57,10 @@ def basic_sit(num, consist):
         budget(0, 200000, consist)
 
 def dop_sit(consist):
+    '''
+    :param consist: Components of the game.
+    :return: This function returns how the values of the parameter will change depending on the current situation.
+    '''
     x = random.randint(1,4)
     if x == 1:
         a = consist['Пассажиры']
@@ -63,23 +83,51 @@ def dop_sit(consist):
         budget(0, 100000, consist)
 
 def budget(min, plus, consist):
+    '''
+    :param min: Changing the parameter to the negative side.
+    :param plus: Changing the parameter to the positive  side.
+    :param consist: Components of the game.
+    :return: This function returns the new value of the parameter budget.
+    '''
     x = consist['Бюджет']
     consist['Бюджет'] = x + plus - min
 
 def fuel(min, plus, consist):
+    '''
+    :param min: Changing the parameter to the negative side.
+    :param plus: Changing the parameter to the positive  side.
+    :param consist: Components of the game.
+    :return: This function returns the new value of the parameter fuel.
+    '''
     x = consist['Топливо']
     consist['Топливо'] = x + plus - min
 
 def reys(min, plus, consist):
+    '''
+    :param min: Changing the parameter to the negative side.
+    :param plus: Changing the parameter to the positive  side.
+    :param consist: Components of the game.
+    :return: This function returns the new value of the parameter flights.
+    '''
     x = consist['Рейсы']
     consist['Рейсы'] = x + plus - min
 
 def passag(min, plus, consist):
+    '''
+    :param min: Changing the parameter to the negative side.
+    :param plus: Changing the parameter to the positive  side.
+    :param consist: Components of the game.
+    :return: This function returns the new value of the parameter passengers.
+    '''
     x = consist['Пассажиры']
     consist['Пассажиры'] = x + plus - min
 
 
 def monitoring(consist):
+    '''
+    :param consist: Components of the game.
+    :return: This function returns the end  of the game.
+    '''
     a = consist['Бюджет']
     b = consist['Топливо']
     c = consist['Рейсы']
@@ -91,6 +139,9 @@ def monitoring(consist):
 
 
 def main():
+    '''
+    :return: This function returns the total of the game.
+    '''
     print('АЭРОПОРТ')
     rule_game()
     consist = {'Бюджет': 1000000, 'Топливо': 10000, 'Рейсы': 2, 'Пассажиры': 100}
